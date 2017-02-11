@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Search</title>
+</head>
+<div th:replace="header :: head"></div>
+<body>
+	<nav th:replace="nav :: main"></nav>
+
+	<div id="main" class="container-fluid">
+
+
+		<form name="form" th:object="${form}"
+			th:action="@{/update-pan}" class="form-template form-x-large form-horizontal centered"
+			method="POST">
+
+			<h2 class="form-signin-heading">Updating PAN</h2>
+			
+			<p th:text="'Token: ' + ${param.get('token')[0]}"></p>
+			<p th:text="'Old PAN: ' + ${param.get('pan')[0]}"></p>
+			
+			<input type="hidden" name="token" th:value="${param.get('token')[0]}"/> 
+
+
+			<div class="row">
+				<div class="form-group col-sm-5"
+					th:classappend="${#fields.hasErrors('*{pan}')}? has-error">
+					<div class="input-group input-group-sm">
+						<label for="amount" class=" control-label">New pan</label> <input
+							type="number" th:field="*{pan}" maxlength="16" class="form-control" autofocus="true" /> 
+							<span class="help-block" th:if="${#fields.hasErrors('pan')}" th:errors="pan"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-sm-5"
+					th:classappend="${#fields.hasErrors('*{expDate}')}? has-error">
+					<div class="input-group input-group-sm">
+						<label for="expDate" class=" control-label">Exp date</label> <input
+							type="text" th:field="*{expDate}" class="form-control" autofocus="true" /> 
+							<span class="help-block" th:if="${#fields.hasErrors('expDate')}" th:errors="expDate"></span>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+				<div class="form-group col-sm-5"
+					th:classappend="${#fields.hasErrors('*{comment}')}? has-error">
+					<div class="input-group input-group-sm">
+						<label for="comment" class=" control-label">Comment</label> <input
+							type="text" th:field="*{comment}" class="form-control" autofocus="true" /> 
+							<span class="help-block" th:if="${#fields.hasErrors('comment')}" th:errors="comment"></span>
+					</div>
+				</div>
+			</div>
+				
+			<div class="text-center"> 
+				<input type="submit" class="btn btn-lg btn-primary" value="Update"/>
+			</div>
+		</form>
+
+	</div>
+</body>
+</html>

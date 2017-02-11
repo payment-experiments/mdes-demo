@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Pan updated</title>
+</head>
+<div th:replace="header :: head"></div>
+<body>
+	<nav th:replace="nav :: main"></nav>
+
+	<div id="main" class="container-fluid">
+
+	<form name="form" class="form-template form-x-large form-horizontal centered">
+		
+		<h2 class="form-signin-heading">PAN updated</h2>
+		
+		<p th:text="'Token Unique reference: ' + ${response.Tokens.Token.get(0).TokenUniqueReference}"></p>
+		<p th:text="'Comment Id: ' + ${response.Tokens.Token.get(0).CommentId}"></p>
+		
+		<br />
+		
+		<a href="javascript:window.close();" class="btn btn-lg btn-primary">Close</a>
+		
+	</form>
+
+	</div>
+</body>
+</html>

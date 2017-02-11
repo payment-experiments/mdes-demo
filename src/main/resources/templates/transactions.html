@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Search</title>
+</head>
+<div th:replace="header :: head"></div>
+<body>
+	<nav th:replace="nav :: main"></nav>
+
+	<div id="main" class="container-fluid">
+
+
+			<h2 class="form-signin-heading">Transactions</h2>
+
+			<div class="panel panel-default form-group">
+			<div class="panel-heading">
+				<strong>Results for <span th:text="${token}"></span> token</strong>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Transaction Date</th>
+						<th>Currency</th>
+						<th>Amount</th>
+						<th>Merchant Name</th>
+						<th>Category</th>
+						<th>Type Code</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item,i : ${transactions}" th:class="${i.odd}? 'odd'">
+						<th th:text="${i.count}" scope="row"></th>
+						<td th:text="${item.get('TransactionDateTime')}"></td>
+						<td th:text="${item.get('CurrencyCode')}"></td>
+  						<td th:text="${item.get('TransactionAmount')}"></td>
+  						<td th:text="${item.get('MerchantName')}"></td>
+  						<td th:text="${item.get('MerchantCategoryDescription')}"></td>
+  						<td th:text="${item.get('TransactionTypeCode')}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<a href="javascript:window.close();" class="btn btn-lg btn-primary">Close</a>
+		<br />
+		
+		<strong><p>Full json for debug</p></strong>
+		<div th:text="${response}"></div>
+	</div>
+</body>
+</html>
